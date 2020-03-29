@@ -1,0 +1,58 @@
+\documentclass[11pt, conference, onecolumn]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{algorithm,algpseudocode}
+\algrenewcommand\algorithmicindent{0.9em}%
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{subfigure}
+\pagestyle{plain}
+\DeclareMathOperator*{\argminA}{arg\,min} % Jan Hlavacek
+\DeclareMathOperator*{\argmaxA}{arg\,max} % Jan Hlavacek
+
+\newcommand{\todo}[1]{\color{red}\textbf{\hl{#1}}\color{black}\xspace}
+%\newcommand{\todo}[1]{}
+\newcommand{\rom}[1]{\expandafter{\romannumeral #1\relax}}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Solvers: Minimize Maximum Stretch time during Process Scheduling}
+
+\author{
+Md Maruf Hossain \\
+Kyle Tibbetts \\
+Anirudh Narayana \\
+}
+
+\maketitle
+\section{PROBLEM}
+
+
+\textbf{Input}: $n$ tasks of processing time $p_i$ to schedule on one processor and release time $r_i$. 
+%\begin{equation*}
+%T = (  t_1, t_2 . . . ., , t_n  ) , \text{ where }  t_i = (p_i, r_i) 
+%\end{equation*}
+
+
+\textbf{Output}: For each task, a start time $\sigma_i \geq 0$. Task $i$ can not start before it is released: $\sigma_i \geq r_i$. Task $i$ completes at $C_i = \sigma_i + p_i$. No two tasks can be excuting at the same time: $\forall i,j [\sigma_i;C_i[ \cap [\sigma_j;C_j[ = \emptyset $ \\ 
+
+\textbf{Metric}: The flow time of a task is the time that elapsed between its release and completion: $F_i = C_i - r_i$. The stretch of a task is its Flow time normalized by its processing time: $S_i = \frac{F_i}{p_i}$. Minimize maximum stretch: $S_{max} = max_i S_i$
+
+
+\section{Importance of the Problem}
+
+This problem performs the task of taking into consideration flow time, and processing time, which will account for time taken of a process and the resulting schedule designed will be more efficient. The following are applications of this problem:
+\begin{itemize}
+    \item Scheduling transport of goods in large industries.
+    \item Minimizing total cost of a telecommunication networks by optimizing topology.
+    
+    (An expanded case of this problem).
+    \item Production Planning.
+\end{itemize}
+
+\end{document}
