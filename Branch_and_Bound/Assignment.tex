@@ -1,0 +1,46 @@
+\documentclass[11pt, conference, onecolumn]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{algorithm,algpseudocode}
+\algrenewcommand\algorithmicindent{0.9em}%
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{subfigure}
+\pagestyle{plain}
+\DeclareMathOperator*{\argminA}{arg\,min} % Jan Hlavacek
+\DeclareMathOperator*{\argmaxA}{arg\,max} % Jan Hlavacek
+
+\newcommand{\todo}[1]{\color{red}\textbf{\hl{#1}}\color{black}\xspace}
+%\newcommand{\todo}[1]{}
+\newcommand{\rom}[1]{\expandafter{\romannumeral #1\relax}}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Branch and Bound presentation }
+
+\maketitle
+\section*{•}
+Design strategies to  solve that problem with a branch and bound without relying on ILP formulation. The components are:
+\begin{enumerate}
+
+\item what is the problem and why is in important?
+
+\item How are subsets represented and how are partitioning of the solution sapce accomplished?
+
+\item How are the branching decisions made? In which order are the partitions made?
+
+\item How is bounding going to work? Which relaxations can be done? How would the relaxed problems be solved optimally?
+
+\item What order of the traversal seem to make sense for this problem and branching and bounding strategy?
+
+\item Are there symmetries or dominance properties that can be taken advantage of?
+
+\item How would deriving a solution from a particular subset be accomplished?
+
+\end{enumerate}
+\end{document}
