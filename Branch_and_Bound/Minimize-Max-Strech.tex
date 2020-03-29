@@ -55,4 +55,72 @@ This problem performs the task of taking into consideration flow time, and proce
     \item Production Planning.
 \end{itemize}
 
+\section{Subsets and Partitioning}
+The subsets of the problem is the permutation of the process. 
+\begin{equation*}
+\begin{array}{l}
+S\ = P! \qquad\qquad\text{Where } P=\{p_1,\dots,p_n\}
+\end{array}
+\end{equation*}
+We can partition the set $S$ into $n$ subsets where,
+\begin{equation*}
+\begin{array}{l}
+S\ = S_1\cup S_2\cup \dots\cup S_n \qquad\qquad \text{Where }S_i = \{p_{i1},\dots,p_{in}\}\ \text{and }S_i\subset  S | S_{p_1}=p_i
+\end{array}
+\end{equation*}
+
+\section{Partition Order}
+In this problem, release time and length of the process is the key point to minimize the max stretch of the scheduling. 
+If we choose a partition where the release time of the first process is smaller compare to others then it can converge to 
+the optimal solution faster.
+
+\begin{equation*}
+\begin{array}{l}
+\text{explore }S_i \ \text{branch before } S_j\ \text{if }  r_{i1}\leq r_{j1} 
+\end{array}
+\end{equation*}
+
+\section{Bound and Relaxations}
+In this problem, we have $n$ different sets that can generate n different max stretch for the scheduling. We are going to maintain 
+one global variable $S_{gmin}$ for all and one local variable $S_lmax$ for each branch to maintain the bound. 
+Here $S_{gmin}$  always holds the global minimum max stretch and local $S_{lmax}$ only holds the maximum stretch 
+of a particular branch.
+We are going to once initialize the $S_{gmin}$
+\begin{equation*}
+\begin{array}{l}
+S_{gmin} = \frac{\sum_{i=0}^{n}p_i - min_{i\in\{1,\dots,n\}}r_i}{min_{i\in\{1,\dots,n\}}p_i}
+\end{array}
+\end{equation*}
+On the other hand $S_{lmax}$ will be initialized with $0$ for every branch and in every depth of the tree it will update to maintain the 
+max stretch of that branch. A branch will be pruned if $S_{lmax}\geq S_{gmin}$.  If a branch reach at the leaf then it will update 
+$S_{gmin} = min\{S_{gmin}, S_{lmax}\}$. 
+
+\section{Traversal Order and Optimal Solution}
+Solution always follow the depth first search(DFS) traversal mechanism. But in every depth, if the immediate next branches has the processes 
+with the same release time then it always traverse the branch first that contain smaller process time. 
+\begin{figure}
+\centering
+\includegraphics[width=0.96\linewidth]{schedule.pdf}
+\caption{Consider 3 process $p_1=3,p_2=6,p_3=4$ with release time $r_1=0,r_2=2,r_3=2$ need to schedule in a system where no two job can schedule at  a time.}
+\end{figure}
+\section{Weak Dominance Properties}
+If two process has the same release time then always schedule the job that has smaller process time. If $r_i=r_j=t_r$ and $p_i<p_j$ then if we schedule
+$p_i$ first at start time $t_{\sigma}$, 
+\begin{equation}
+\begin{array}{l}
+Stretch_{i1} = \frac{t_{\sigma} + p_i - t_r}{p_i} \\
+Stretch_{j1} = \frac{t_{\sigma} + p_i + p_j- t_r}{p_j} 
+\end{array}
+\end{equation}
+Now if schedule $p_j$ before $p_i$
+\begin{equation}
+\begin{array}{l}
+Stretch_{j2} = \frac{t_{\sigma} + p_j - t_r}{p_j} \\
+Stretch_{i2} = \frac{t_{\sigma} + p_i + p_j- t_r}{p_i} 
+\end{array}
+\end{equation}
+Here, $Stretch_{j2} < Stretch_{j1}$ but $Stretch_{i2}$ is greater than both $Stretch_{i1}$ and $Stretch_{j1}$. So, Schedule the smaller job with 
+same release time can give better result.
+
+
 \end{document}
