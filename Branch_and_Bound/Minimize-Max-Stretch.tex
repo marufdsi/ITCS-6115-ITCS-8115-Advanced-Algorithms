@@ -117,7 +117,6 @@ with the same release time then it always traverse the branch first that contain
 \caption{Consider 3 process $p_1=3,p_2=6,p_3=4$ with release time $r_1=0,r_2=2,r_3=2$ need to schedule in a system where no two job can schedule at  a time.}
 \end{figure}
 \section{Weak Dominance Properties}
-There exists an optimal solutin where the tasks are scheduled in order of their release time. \\
 
 There exists an optimal solution such that if two tasks have the same release time then always schedule the job with the smaller process time first. If $r_i=r_j=t_r$ and $p_i<p_j$ then if we schedule
 $p_i$ first at start time $t_{\sigma}$, 
@@ -136,6 +135,8 @@ S'_{i} = \frac{t_{\sigma} + p_i + p_j- t_r}{p_i}
 \end{equation}
 Here, $S'_{j} < S_{j}$ but $S'_{i}$ is greater than both $S_{i}$ and $S_{j}$. So, Schedule the smaller job with 
 same release time can give better result.
+
+There exists an optimal solution such that tasks are scheduled with no idle time.
 
 
 
