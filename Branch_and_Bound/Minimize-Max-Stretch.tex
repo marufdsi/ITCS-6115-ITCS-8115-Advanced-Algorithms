@@ -95,16 +95,12 @@ the optimal solution faster.
 
 \section{Bound and Relaxations}
 In this problem, we have $n$ different sets that can generate $n!$ different max stretch for the scheduling. We are going to maintain 
-one global variable $S_{gmin}$ for all and one local variable $S_{lmax}$ for each branch to maintain the bound. 
-Here $S_{gmin}$  always holds the global minimum max-stretch and local $S_{lmax}$ only holds the maximum stretch 
+one global variable $S_{gmin}$ and a local variable $S_{lmax}$ for each branch.
+$S_{gmin}$ is the minimum maximum stretch seen in the explored branches. $S_{lmax}$ is the maximum stretch time seen from the current and path to the root.
 of a particular branch.
-We are going to once initialize the $S_{gmin}$
-\begin{equation*}
-\begin{array}{l}
-S_{gmin} = \frac{\sum_{i=0}^{n}p_i - min_{i\in\{1,\dots,n\}}r_i}{min_{i\in\{1,\dots,n\}}p_i}
-\end{array}
-\end{equation*}
-On the other hand $S_{lmax}$ will be initialized with $0$ for every branch and in every depth of the tree it will update to maintain the 
+We are going to once initialize the $S_{gmin} = \infty$.
+
+On the other hand $S_{lmax}$ will be initialized with $0$ for every branch and at every node and each depth of the tree it will update to maintain the 
 max stretch of that branch. A branch will be pruned if $S_{lmax}\geq S_{gmin}$.  If a branch reach at the leaf then it will update 
 $S_{gmin} = min\{S_{gmin}, S_{lmax}\}$. 
 
@@ -124,8 +120,7 @@ $p_i$ first at start time $t_{\sigma}$,
 \begin{array}{l}
 S_{i} = \frac{t_{\sigma} + p_i - t_r}{p_i} \\
 S_{j} = \frac{t_{\sigma} + p_i + p_j- t_r}{p_j} 
-\end{array}
-\end{equation}
+\end{array} \end{equation}
 Now if schedule $p_j$ before $p_i$
 \begin{equation}
 \begin{array}{l}
